@@ -155,44 +155,46 @@ class PreviewPanel {
                 <title>GuiLite preview</title>
             </head>
 			<body>
-				<h1 id="source-code">${sourceCode}</h1>
+				<h1 id="source-code" visible="false">${sourceCode}</h1>
 				<canvas id="screen" width="1024" height="768"></canvas>
 			</body>
 			<script type="text/javascript">
-				function draw_single_widget(context, str, rect){
-					console.log(rect.toString());
-					context.fillStyle = "#FF0000";
-					context.fillRect(rect[0], rect[1], rect[2], rect[3]);
-					context.fillText(str, rect[0], rect[1]);
-				}
+			function draw_single_widget(context, str, rect){
+				console.log(rect.toString());
+				context.fillStyle = "#FF0000";
+				context.fillRect(rect[0], rect[1], rect[2], rect[3]);
+				context.fillText(str, rect[0], rect[1]);
+			}
 
-				function draw_widgets(context, widgets){
-					for( var i = 0; i < widgets.length; i++){
-						rect = widgets[i].match(/[^A-Za-z_]\\d+/g);
-						string = "null"
-						strings = widgets[i].match(/".*"/g);
-						if(strings.length != 1){
-							console.log('Invalid strings' + strings.length.toString() + ':' + strings.toString());
-						}else{
-							string = strings[0].replace(/"/g,'');//remove "
-						}
-						console.log(string.toString() + rect.toString());
-						draw_single_widget(context, string, rect)
+			function draw_widgets(context, widgets){
+				for( var i = 0; i < widgets.length; i++){
+					widget_name = widgets[i].match(/".*"/g);
+					if(widget_name.length != 1){
+						console.log('Invalid widget_name' + ':' + widget_name.toString());
+					}else{
+						widget_name = widget_name[0].replace(/"/g,'');//remove "
 					}
+			
+					widget_without_name = widgets[i].replace(/".*"/g, '');//Remove widget name for rect
+					rect = widget_without_name.match(/[^A-Za-z_]\\d+/g);
+					console.log(widget_name.toString() + rect.toString());
+					draw_single_widget(context, widget_name, rect)
 				}
+			}
 
-				function search_widgets(tree){
-					var widgets = tree.match(/{ *&[^,]*,[^,]*,[^,]*,[^,]*,[^,]*,[^,]*,[^,]*/g);
-					console.log(widgets.length.toString() + ':' + widgets.toString());
-					return widgets;
-				}
+			function search_widgets(tree){
+				var widgets = tree.match(/{ *&[^,]*,[^,]*,[^,]*,[^,]*,[^,]*,[^,]*,[^,]*/g);
+				console.log(widgets.length.toString() + ':' + widgets.toString());
+				return widgets;
+			}
 
-				function search_trees(source){
-					var trees = source.match(/WND_TREE[\\s\\S]*};$/g);
-					console.log(trees.length.toString() + ':' + trees.toString());
-    				return trees;
-				}
+			function search_trees(source){
+				var trees = source.match(/WND_TREE[\\s\\S]*};$/mg);
+				console.log(trees.length.toString() + ':' + trees.toString());
+				return trees;
+			}
 
+				document.getElementById("source-code").style.display = "none";
 				const canvas = document.getElementById('screen');
 				const context = canvas.getContext('2d');			
 				var source_code = document.getElementById('source-code').textContent;

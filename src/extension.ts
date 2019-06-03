@@ -188,25 +188,22 @@ class PreviewPanel {
 				}
 
 				function search_trees(source){
-					var trees = source.match(/WND_TREE.*};$/mg);
+					var trees = source.match(/WND_TREE[\\s\\S]*};$/g);
 					console.log(trees.length.toString() + ':' + trees.toString());
     				return trees;
 				}
 
 				const canvas = document.getElementById('screen');
 				const context = canvas.getContext('2d');			
-
-				var source_code = 'static c_button s_exit_button;WND_TREE s_dialog_widgets[] = {	{&s_exit_button, ID_EXIT_BUTTON, "Exit", 50, 50, 100, 30}, {&s_exit_button, ID_EXIT_BUTTON, "Welcome", 100, 100, 100, 30}, {NULL, 0 , 0, 0, 0, 0, 0}};\\n WND_TREE s_dialog_widgets1[] = {	{&s_exit_button, ID_EXIT_BUTTON, "Exit1", 150, 150, 100, 30}, {&s_exit_button, ID_EXIT_BUTTON, "Welcome_1", 200, 200, 100, 30}, {NULL, 0 , 0, 0, 0, 0, 0}};\\n';
-
+				var source_code = document.getElementById('source-code').textContent;
+				//console.log(source_code);
+				
 				var trees = search_trees(source_code);
 				for( var i = 0; i < trees.length; i++){
 					var widgets = search_widgets(trees[i]);
 					draw_widgets(context, widgets);
 				}
-
-				var text = document.getElementById('source-code').textContent;
-				console.log(text);
-
+				
 			</script>  
             </html>`;
 	}

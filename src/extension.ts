@@ -131,7 +131,7 @@ class PreviewPanel {
 	}
 
 	private _update() {
-		let uri = vscode.Uri.file('C:\\test.txt');
+		let uri = require('vscode').window.activeTextEditor.document.uri;
 		// assuming the file was saved, let's open it in a view column
 		vscode.workspace.openTextDocument(uri).then(doc=>{
 			let sourceCode = doc.getText();
@@ -141,7 +141,6 @@ class PreviewPanel {
 					this._panel.title = 'GuiLite Preview';
 					this._panel.webview.html = this._getHtmlForWebview(sourceCode);
 			}
-			// vscode.window.showTextDocument(doc, vscode.ViewColumn.Two, true);
 		});
 	}
 

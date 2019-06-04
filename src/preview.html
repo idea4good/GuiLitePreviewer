@@ -9,10 +9,15 @@
 
 <script type="text/javascript">
 function draw_single_widget(context, str, rect){
-    console.log(rect.toString());
-    context.fillStyle = "#FF0000";
+    console.log(rect);
+    context.fillStyle = "#1A1D34";
     context.fillRect(rect[0], rect[1], rect[2], rect[3]);
-    context.fillText(str, rect[0], rect[1]);
+
+    context.fillStyle = "#FFFFFF";
+    context.font = "20px Arial";
+    context.textAlign = "center"
+    context.textBaseline = "middle";
+    context.fillText(str, rect[0] + rect[2]/2, rect[1] + rect[3]/2);
 }
 
 function draw_widgets(context, widgets){
@@ -25,8 +30,9 @@ function draw_widgets(context, widgets){
         }
 
         widget_without_name = widgets[i].replace(/".*"/g, '');//Remove widget name for rect
-        rect = widget_without_name.match(/[^A-Za-z_]\d+/g);
-        console.log(widget_name.toString() + rect.toString());
+        var rect = widget_without_name.match(/[^A-Za-z_]\d+/g);
+        rect = rect.map(Number);
+        console.log(widget_name.toString() + ': ' + rect.toString());
         draw_single_widget(context, widget_name, rect)
     }
 }
@@ -45,14 +51,12 @@ function search_trees(source){
 
     const canvas = document.getElementById('screen');
     const context = canvas.getContext('2d');
+    context.fillStyle = "#000000";
+    context.fillRect(0, 0, 1024, 768);
     var source_code = `static c_my_dialog s_my_dialog;
 
 static c_button s_exit_button;
-WND_TREE s_dialog_widgets[] =
-{
-	{ &s_exit_button,	ID_EXIT_BUTTON,	"Exit",	100, 100, 100, 50},
-	{NULL, 0 , 0, 0, 0, 0, 0}
-};
+
 
 WND_TREE s_main_widgets[] =
 {
@@ -66,7 +70,6 @@ WND_TREE s_main_widgets[] =
 	{ &s_spin_box,	ID_SPIN_BOX,"spinBox",	400, 170, 100, 50},
 	{ &s_list_box,	ID_LIST_BOX,"listBox",	400, 240, 100, 50},
 
-	{ &s_my_dialog,	ID_DIALOG,	"Dialog",	200, 100, 280, 312, s_dialog_widgets},
 	{NULL, 0 , 0, 0, 0, 0, 0}
 };
 

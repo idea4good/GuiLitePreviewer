@@ -131,7 +131,7 @@ class PreviewPanel {
 	}
 
 	private _update() {
-		let uri = vscode.Uri.file('D:\\test.txt');
+		let uri = vscode.Uri.file('C:\\test.txt');
 		// assuming the file was saved, let's open it in a view column
 		vscode.workspace.openTextDocument(uri).then(doc=>{
 			let sourceCode = doc.getText();
@@ -160,10 +160,15 @@ class PreviewPanel {
 			</body>
 			<script type="text/javascript">
 			function draw_single_widget(context, str, rect){
-				console.log(rect.toString());
-				context.fillStyle = "#FF0000";
+				console.log(rect);
+				context.fillStyle = "#1A1D34";
 				context.fillRect(rect[0], rect[1], rect[2], rect[3]);
-				context.fillText(str, rect[0], rect[1]);
+
+				context.fillStyle = "#FFFFFF";
+    			context.font = "20px Arial";
+    			context.textAlign = "center"
+			    context.textBaseline = "middle";
+				context.fillText(str, rect[0] + rect[2]/2, rect[1] + rect[3]/2);
 			}
 
 			function draw_widgets(context, widgets){
@@ -176,8 +181,9 @@ class PreviewPanel {
 					}
 			
 					widget_without_name = widgets[i].replace(/".*"/g, '');//Remove widget name for rect
-					rect = widget_without_name.match(/[^A-Za-z_]\\d+/g);
-					console.log(widget_name.toString() + rect.toString());
+					var rect = widget_without_name.match(/[^A-Za-z_]\\d+/g);
+        			rect = rect.map(Number);
+					console.log(widget_name.toString() + ': ' + rect.toString());
 					draw_single_widget(context, widget_name, rect)
 				}
 			}
@@ -197,6 +203,8 @@ class PreviewPanel {
 				document.getElementById("source-code").style.display = "none";
 				const canvas = document.getElementById('screen');
 				const context = canvas.getContext('2d');			
+				context.fillStyle = "#000000";
+    			context.fillRect(0, 0, 1024, 768);
 				var source_code = document.getElementById('source-code').textContent;
 				//console.log(source_code);
 				

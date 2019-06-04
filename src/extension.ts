@@ -199,20 +199,18 @@ class PreviewPanel {
 				return trees;
 			}
 
-				document.getElementById("source-code").style.display = "none";
-				const canvas = document.getElementById('screen');
-				const context = canvas.getContext('2d');			
-				context.fillStyle = "#000000";
-    			context.fillRect(0, 0, 1024, 768);
-				var source_code = document.getElementById('source-code').textContent;
-				//console.log(source_code);
-				
-				var trees = search_trees(source_code);
-				for( var i = 0; i < trees.length; i++){
-					var widgets = search_widgets(trees[i]);
-					draw_widgets(context, widgets);
-				}
-				
+			document.getElementById("source-code").style.display = "none";
+			const canvas = document.getElementById('screen');
+			const context = canvas.getContext('2d');			
+			context.fillStyle = "#000000";
+			context.fillRect(0, 0, 1024, 768);
+			var source_code = document.getElementById('source-code').textContent;
+			
+			var trees = search_trees(source_code);
+			for( var i = 0; i < trees.length; i++){
+				var widgets = search_widgets(trees[i]);
+				draw_widgets(context, widgets);
+			}
 			</script>  
             </html>`;
 	}

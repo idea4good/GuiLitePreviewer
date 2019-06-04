@@ -49,11 +49,11 @@ function search_trees(source){
     return trees;
 }
 
-    const canvas = document.getElementById('screen');
-    const context = canvas.getContext('2d');
-    context.fillStyle = "#000000";
-    context.fillRect(0, 0, 1024, 768);
-    var source_code = `static c_my_dialog s_my_dialog;
+const canvas = document.getElementById('screen');
+const context = canvas.getContext('2d');
+context.fillStyle = "#000000";
+context.fillRect(0, 0, 1024, 768);
+var source_code = `static c_my_dialog s_my_dialog;
 
 static c_button s_exit_button;
 WND_TREE s_dialog_widgets[] =
@@ -83,11 +83,10 @@ int captureUiOfHelloWidgets()
 	return s_display->snap_shot("snap_short.bmp");
 }`;
 
-    var trees = search_trees(source_code);
-    for( var i = 0; i < trees.length; i++){
-    	var widgets = search_widgets(trees[i]);
-    	draw_widgets(context, widgets);
-    }
-    
+var trees = search_trees(source_code);
+for( var i = 0; i < trees.length; i++){
+    var widgets = search_widgets(trees[i]);
+    draw_widgets(context, widgets);
+}
 </script>
 </html>

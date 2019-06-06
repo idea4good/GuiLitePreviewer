@@ -3,19 +3,18 @@
 - GuiLite Previewer is a Visual Studio Code extension, it could help developer to code and preview your GUI at same time
 - You could do all things(e.g. code/design/build/run/debug your GuiLite App) with VS Code
 - No need for special GUI editor(e.g. Qt designer) any more.
-## Demo
 
+## Demo
 ![demo](demo.gif)
 
-### `vscode` module
-
-- [`window.createWebviewPanel`](https://code.visualstudio.com/api/references/vscode-api#window.createWebviewPanel)
-- [`window.registerWebviewPanelSerializer`](https://code.visualstudio.com/api/references/vscode-api#window.registerWebviewPanelSerializer)
-
-## How to run?
-
+## How to build?
+- Download npm, and install
+- `cd GuiLitePreviwer`
+- `npm install` 
 - Open this project in VS Code 1.25+
-- `npm install`
 - `F5` to start debugging
 
-Run the `GuiLite: preview layout` to preview the GUI layout of your GuiLite App code.
+## How to preview your GUI?
+1. Open your source code(e.g. test.cpp) with VS Code
+2. `ctrl + shift + p`, and input `GuiLite: preview layout`
+3. You will see your GUI layout in preview page

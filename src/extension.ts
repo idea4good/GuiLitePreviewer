@@ -4,6 +4,11 @@ import * as vscode from 'vscode';
 export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand('guiLite.preview', () => {
+			let editor = vscode.window.activeTextEditor;
+			if(!editor){
+				vscode.window.showErrorMessage("Can not preview, because no document is open");
+				return;
+			}
 			PreviewPanel.createOrShow(context.extensionPath);
 		})
 	);

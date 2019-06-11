@@ -105,7 +105,12 @@ class PreviewPanel {
 		this._panel.webview.onDidReceiveMessage(
 			message => {
 				switch (message.command) {
-					case 'alert':
+					case 'refresh':
+						if (this._panel.visible) {
+							this._update();
+						}
+						return;
+					default:
 						vscode.window.showErrorMessage(message.text);
 						return;
 				}
@@ -204,6 +209,16 @@ class PreviewPanel {
 				return trees;
 			}
 
+			function start_timer(){
+				const vscode = acquireVsCodeApi();
+				setInterval(() => {
+					vscode.postMessage({
+						command: 'refresh',
+						text: 'webview'
+					})
+				}, 500);
+			}
+
 			document.getElementById("source-code").style.display = "none";
 			const canvas = document.getElementById('screen');
 			const context = canvas.getContext('2d');			
@@ -216,6 +231,8 @@ class PreviewPanel {
 				var widgets = search_widgets(trees[i]);
 				draw_widgets(context, widgets);
 			}
+			
+			start_timer();
 			</script>  
             </html>`;
 	}

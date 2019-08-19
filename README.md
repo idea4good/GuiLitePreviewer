@@ -9,10 +9,10 @@
 ![demo](demo.gif)
 
 ## How to build GuiLite Previewer?
-- Download npm, and install
-- `cd GuiLitePreviwer`
-- `npm install` 
-- Open this project in VS Code 1.25+
+1. Download npm, and install
+2. `cd GuiLitePreviwer`
+3. `npm install` 
+4. `code .`(VS Code version should be 1.25+)
 - `F5` to start debugging
 
 ## How to use GuiLite Previewer?

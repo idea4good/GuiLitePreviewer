@@ -12,7 +12,7 @@
 1. Download npm, and install
 2. `cd GuiLitePreviwer`
 3. `npm install` 
-4. `code .`(VS Code version should be 1.25+)
+4. `code .` to open the project(VS Code version should be 1.25+)
 - `F5` to start debugging
 
 ## How to use GuiLite Previewer?

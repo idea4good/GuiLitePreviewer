@@ -8,15 +8,13 @@
 ## Demo
 ![demo](demo.gif)
 
-## How to build GuiLite Previewer?
+## How to build/use GuiLite Previewer?
 1. Download npm, and install
-2. Run `cd GuiLitePreviwer`
-3. Run `npm install` 
-4. Run `code .` to open the project(VS Code version should be 1.25+)
-5. Press `F5` to build/debug the extension
-6. You will get a new VS Code window with the extension you build above
-
-## How to use GuiLite Previewer?
-1. Open your source code(e.g. test.cpp) with new VS Code with extension
-2. `ctrl + shift + p`, and input `GuiLite: preview layout`
-3. You will see your GUI layout in preview page
+2. Run in Windows command line: `cd GuiLitePreviwer`
+3. Run in Windows command line: `npm install` 
+4. Run in Windows command line: `code .` which will open the project in VS Code window
+5. In VS Code window you just opened, Press `F5` to build/debug the extension
+6. You will get an new VS Code window with the extension you build above
+7. In the new VS Code window, open your source code(e.g. test.cpp)
+8. `ctrl + shift + p`, and input `GuiLite: preview layout`
+9. You will see your GUI layout in preview page

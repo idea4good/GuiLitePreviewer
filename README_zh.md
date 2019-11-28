@@ -10,7 +10,7 @@
 
 ## 如何编译/使用GuiLite Previewer?
 1. Download npm, and install
-2. Run in Windows command line: `cd GuiLitePreviwer`
+2. Run in Windows command line: `cd GuiLitePreviwer` ⚠️and make sure you're in **GuiLitePreviwer** folder⚠️
 3. Run in Windows command line: `npm install` 
 4. Run in Windows command line: `code .` which will open the project in VS Code window
 5. In VS Code window you just opened, Press `F5` to build/debug the extension

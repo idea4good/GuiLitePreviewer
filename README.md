@@ -8,7 +8,12 @@
 ## Demo
 ![demo](demo.gif)
 
-## How to build/use GuiLite Previewer?
+## Quick start
+1. Open VS Code
+2. Click Extensions
+3. Search "GuiLite" and install
+
+## How to build/debug GuiLite Previewer?
 1. Download npm, and install
 2. Run in Windows command line: `cd GuiLitePreviwer` ⚠️and make sure you're in **GuiLitePreviwer** folder⚠️
 3. Run in Windows command line: `npm install` 
